@@ -137,4 +137,12 @@
     <string name="imgresult">Image For Result</string>
     <string name="posterwebsite">Poster For Website</string>
     <string name="imgprofile">Image For Profile</string>
+    <string name="welcome_activity_title">Welcome Activity</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">SignUp</string>
+    <string name="demographic_data">"Demographic Data "</string>
+    <string name="prediction_data">"Prediction Data "</string>
+    <string name="prediction">Result Prediction</string>
+    <string name="history">History</string>
+    <string name="profile">Profile</string>
 </resources>

@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.dea.mentalcare.R
 import com.dea.mentalcare.databinding.ActivitySignUpBinding
 import androidx.activity.viewModels
 import com.dea.mentalcare.ui.homepage.HomeActivity
+import com.dea.mentalcare.ui.welcome.WelcomeActivity
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -34,6 +36,12 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionBar = supportActionBar
+        actionBar?.apply {
+            title = getString(R.string.signup)
+            setDisplayHomeAsUpEnabled(true)
+        }
+
         binding.signinButton.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
@@ -42,6 +50,18 @@ class SignUpActivity : AppCompatActivity() {
         playAnimation()
         setupAction()
         observeViewModel()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                val intent = Intent(this, WelcomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun playAnimation() {

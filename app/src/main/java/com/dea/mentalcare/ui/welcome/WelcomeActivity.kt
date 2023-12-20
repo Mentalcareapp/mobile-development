@@ -3,6 +3,7 @@ package com.dea.mentalcare.ui.welcome
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.dea.mentalcare.R
 import com.dea.mentalcare.databinding.ActivityWelcomeBinding
 import com.dea.mentalcare.ui.auth.SignInActivity
 import com.dea.mentalcare.ui.auth.SignUpActivity
@@ -25,6 +26,11 @@ class WelcomeActivity : AppCompatActivity() {
 
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val actionBar = supportActionBar
+        actionBar?.apply {
+            title = getString(R.string.welcome_activity_title)
+        }
 
         binding.buttonCreate.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)

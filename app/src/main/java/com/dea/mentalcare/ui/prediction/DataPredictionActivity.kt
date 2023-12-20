@@ -3,6 +3,7 @@ package com.dea.mentalcare.ui.prediction
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -34,6 +35,12 @@ class DataPredictionActivity : AppCompatActivity() {
         binding = ActivityDataPrediction2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionBar = supportActionBar
+        actionBar?.apply {
+            title = getString(R.string.prediction_data)
+            setDisplayHomeAsUpEnabled(true)
+        }
+
         buttonGroup()
 
         interpreter = Interpreter(loadModelByteBuffer("model.tflite"))
@@ -50,6 +57,16 @@ class DataPredictionActivity : AppCompatActivity() {
                 Toast.makeText(this,
                     getString(R.string.demographic_data_not_available), Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

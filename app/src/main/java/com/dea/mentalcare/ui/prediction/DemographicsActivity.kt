@@ -5,12 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
 import com.dea.mentalcare.R
 import com.dea.mentalcare.data.entity.DemographicData
 import com.dea.mentalcare.databinding.ActivityDataDemografisBinding
 
+@Suppress("DEPRECATION")
 class DemographicsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDataDemografisBinding
 
@@ -19,6 +21,12 @@ class DemographicsActivity : AppCompatActivity() {
 
         binding = ActivityDataDemografisBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val actionBar = supportActionBar
+        actionBar?.apply {
+            title = getString(R.string.demographic_data)
+            setDisplayHomeAsUpEnabled(true)
+        }
 
         val genderOptions = arrayOf("Male", "Female", "Others")
         val statusOptions = arrayOf("Employed", "Unemployed")
@@ -37,6 +45,16 @@ class DemographicsActivity : AppCompatActivity() {
             sendDataDemographics()
         }
         playAnimation()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun sendDataDemographics() {

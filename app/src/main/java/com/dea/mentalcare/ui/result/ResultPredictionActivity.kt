@@ -31,6 +31,11 @@ class ResultPredictionActivity : AppCompatActivity() {
         binding = ActivityResultPredictionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionBar = supportActionBar
+        actionBar?.apply {
+            title = getString(R.string.prediction)
+        }
+
         val resultValue = intent.getIntExtra("resultValue", 0)
         docId = intent.getStringExtra("docId")
 

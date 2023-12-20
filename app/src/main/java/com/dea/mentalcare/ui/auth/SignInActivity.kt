@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -15,6 +16,7 @@ import com.dea.mentalcare.databinding.ActivitySignInBinding
 import com.dea.mentalcare.ui.homepage.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 
+@Suppress("DEPRECATION")
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private val signInViewModel: SignInViewModel by viewModels()
@@ -33,9 +35,25 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionBar = supportActionBar
+        actionBar?.apply {
+            title = getString(R.string.signin)
+            setDisplayHomeAsUpEnabled(true)
+        }
+
         playAnimation()
         setupObservers()
         setupAction()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun playAnimation() {
