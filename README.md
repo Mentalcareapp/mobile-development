@@ -25,9 +25,5 @@ MentalCare is a mental health app designed to provide holistic solutions through
     <img src="app/src/main/res/drawable/profileactivity.png" width="200" hspace="20">
 </div>
 
-## License
-
-This application is licensed under [MIT License](LICENSE).
-
 ---
 © 2023 MentalCare Team
